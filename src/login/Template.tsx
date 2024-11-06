@@ -14,6 +14,7 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
     const {
         headerMsg,
         subHeadermsg,
+        headerNode,
         displayInfo = false,
         displayMessage = true,
         displayRequiredFields = false,
@@ -104,7 +105,7 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
                         {(() => {
                             const node = !(auth !== undefined && auth.showUsername && !auth.showResetCredentials) ? (
                                 <div className="login-heading">
-                                    <ODSLabel children={headerMsg} variant="h6" color="#263238" fontWeight="700" fontSize="1.5rem" />
+                                    <ODSLabel children={headerMsg || headerNode} variant="h6" color="#263238" fontWeight="700" fontSize="1.5rem" />
                                     <ODSLabel children={subHeadermsg} variant="body3" color="#607D8B" fontSize="1rem" fontWeight="400" />
                                 </div>
                             ) : (
