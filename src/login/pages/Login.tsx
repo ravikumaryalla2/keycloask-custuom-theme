@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { kcSanitize } from "keycloakify/lib/kcSanitize";
 // import { assert } from "keycloakify/tools/assert";
 // import { clsx } from "keycloakify/tools/clsx";
@@ -13,6 +13,9 @@ import { googlelogo } from "../assets";
 // import Icon from "oute-ds-icon";
 
 export default function Login(props: PageProps<Extract<KcContext, { pageId: "login.ftl" }>, I18n>) {
+    useEffect(() => {
+        document.title = "Tiny Command";
+    }, []);
     const getLogo = (name: unknown) => {
         switch (name) {
             case "google":

@@ -10,6 +10,7 @@ import type { KcContext } from "./KcContext";
 import "../login/pages/Template.css";
 import ODSIcon from "oute-ds-icon";
 import ODSLabel from "oute-ds-label";
+import { showAlert } from "oute-ds-alert";
 export default function Template(props: TemplateProps<KcContext, I18n>) {
     const {
         headerMsg,
@@ -20,7 +21,7 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
         displayRequiredFields = false,
         socialProvidersNode = null,
         infoNode = null,
-        documentTitle,
+        // documentTitle,
         bodyClassName,
         kcContext,
         i18n,
@@ -36,7 +37,7 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
     const { auth, url, message, isAppInitiatedAction } = kcContext;
 
     useEffect(() => {
-        document.title = documentTitle ?? msgStr("loginTitle", kcContext.realm.displayName);
+        document.title = `Tiny Command`;
     }, []);
 
     useSetClassName({
@@ -57,18 +58,48 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
 
     return (
         <div className={"custom-body"}>
-            <div className={"form-card"}>
-                <div className="tinylogo">
-                    <ODSIcon
-                        outeIconName="TINY"
-                        outeIconProps={{
-                            sx: { color: "#1C3693", height: "4.688rem", width: "12.5rem" }
-                        }}
-                    />
-                </div>
-                <div className="login-main">
-                    <header className={kcClsx("kcFormHeaderClass")}>
-                        {/* {enabledLanguages.length > 1 && (
+            {displayMessage &&
+                message !== undefined &&
+                (message.type !== "warning" || !isAppInitiatedAction) &&
+                // <div
+                //     className={clsx(
+                //         `alert-${message.type}`,
+                //         kcClsx("kcAlertClass"),
+                //         `pf-m-${message?.type === "error" ? "danger" : message.type}`
+                //     )}
+                // >
+                //     <div className="pf-c-alert__icon">
+                //         {message.type === "success" && <span className={kcClsx("kcFeedbackSuccessIcon")}></span>}
+                //         {message.type === "warning" && <span className={kcClsx("kcFeedbackWarningIcon")}></span>}
+                //         {message.type === "error" && <span className={kcClsx("kcFeedbackErrorIcon")}></span>}
+                //         {message.type === "info" && <span className={kcClsx("kcFeedbackInfoIcon")}></span>}
+                //     </div>
+                //     <span
+                //         className={kcClsx("kcAlertTitleClass")}
+                //         dangerouslySetInnerHTML={{
+                //             __html: kcSanitize(message.summary)
+                //         }}
+                //     />
+                // </div>
+
+                showAlert({
+                    type: message.type,
+                    message: kcSanitize(message.summary),
+                    showProgress: false
+                })}
+            <div className="tinylogo">
+                <ODSIcon
+                    outeIconName="TINY"
+                    outeIconProps={{
+                        sx: { color: "#1C3693", height: "4.688rem", width: "12.5rem" }
+                    }}
+                />
+            </div>
+            <div className="temporary-box-shadow">
+                <div className={"form-card"}>
+                    <div className="login-main">
+                        <header className={kcClsx("kcFormHeaderClass")}>
+                            {/* {enabledLanguages.length > 1 && (
                         <div className={kcClsx("kcLocaleMainClass")} id="kc-locale">
                             <div id="kc-locale-wrapper" className={kcClsx("kcLocaleWrapperClass")}>
                                 <div id="kc-locale-dropdown" className={clsx("menu-button-links", kcClsx("kcLocaleDropDownClass"))}>
@@ -102,45 +133,45 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
                             </div>
                         </div>
                     )} */}
-                        {(() => {
-                            const node = !(auth !== undefined && auth.showUsername && !auth.showResetCredentials) ? (
-                                <div className="login-heading">
-                                    <ODSLabel children={headerMsg || headerNode} variant="h6" color="#263238" fontWeight="700" fontSize="1.5rem" />
-                                    <ODSLabel children={subHeadermsg} variant="body3" color="#607D8B" fontSize="1rem" fontWeight="400" />
-                                </div>
-                            ) : (
-                                <div id="kc-username" className={kcClsx("kcFormGroupClass")}>
-                                    <label id="kc-attempted-username">{auth.attemptedUsername}</label>
-                                    <a id="reset-login" href={url.loginRestartFlowUrl} aria-label={msgStr("restartLoginTooltip")}>
-                                        <div className="kc-login-tooltip">
-                                            <i className={kcClsx("kcResetFlowIcon")}></i>
-                                            <span className="kc-tooltip-text">{msg("restartLoginTooltip")}</span>
-                                        </div>
-                                    </a>
-                                </div>
-                            );
-
-                            if (displayRequiredFields) {
-                                return (
-                                    <div className={kcClsx("kcContentWrapperClass")}>
-                                        <div className={clsx(kcClsx("kcLabelWrapperClass"), "subtitle")}>
-                                            <span className="subtitle">
-                                                <span className="required">*</span>
-                                                {msg("requiredFields")}
-                                            </span>
-                                        </div>
-                                        <div className="col-md-10">{node}</div>
+                            {(() => {
+                                const node = !(auth !== undefined && auth.showUsername && !auth.showResetCredentials) ? (
+                                    <div className="login-heading">
+                                        <ODSLabel children={headerMsg || headerNode} variant="h4" />
+                                        <ODSLabel children={subHeadermsg} variant="body1" />
+                                    </div>
+                                ) : (
+                                    <div id="kc-username" className={kcClsx("kcFormGroupClass")}>
+                                        <label id="kc-attempted-username">{auth.attemptedUsername}</label>
+                                        <a id="reset-login" href={url.loginRestartFlowUrl} aria-label={msgStr("restartLoginTooltip")}>
+                                            <div className="kc-login-tooltip">
+                                                <i className={kcClsx("kcResetFlowIcon")}></i>
+                                                <span className="kc-tooltip-text">{msg("restartLoginTooltip")}</span>
+                                            </div>
+                                        </a>
                                     </div>
                                 );
-                            }
 
-                            return node;
-                        })()}
-                    </header>
-                    <div id="kc-content">
-                        <div>
-                            {/* App-initiated actions should not see warning messages about the need to complete the action during login. */}
-                            {displayMessage && message !== undefined && (message.type !== "warning" || !isAppInitiatedAction) && (
+                                if (displayRequiredFields) {
+                                    return (
+                                        <div className={kcClsx("kcContentWrapperClass")}>
+                                            <div className={clsx(kcClsx("kcLabelWrapperClass"), "subtitle")}>
+                                                <span className="subtitle">
+                                                    <span className="required">*</span>
+                                                    {msg("requiredFields")}
+                                                </span>
+                                            </div>
+                                            <div className="col-md-10">{node}</div>
+                                        </div>
+                                    );
+                                }
+
+                                return node;
+                            })()}
+                        </header>
+                        <div id="kc-content">
+                            <div>
+                                {/* App-initiated actions should not see warning messages about the need to complete the action during login. */}
+                                {/* {displayMessage && message !== undefined && (message.type !== "warning" || !isAppInitiatedAction) && (
                                 <div
                                     className={clsx(
                                         `alert-${message.type}`,
@@ -161,27 +192,28 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
                                         }}
                                     />
                                 </div>
-                            )}
-                            {children}
-                            {auth !== undefined && auth.showTryAnotherWayLink && (
-                                <form id="kc-select-try-another-way-form" action={url.loginAction} method="post">
-                                    <div className={kcClsx("kcFormGroupClass")}>
-                                        <input type="hidden" name="tryAnotherWay" value="on" />
-                                        <a
-                                            href="#"
-                                            id="try-another-way"
-                                            onClick={() => {
-                                                document.forms["kc-select-try-another-way-form" as never].submit();
-                                                return false;
-                                            }}
-                                        >
-                                            {msg("doTryAnotherWay")}
-                                        </a>
-                                    </div>
-                                </form>
-                            )}
-                            {socialProvidersNode}
-                            {displayInfo && infoNode}
+                            )} */}
+                                {children}
+                                {auth !== undefined && auth.showTryAnotherWayLink && (
+                                    <form id="kc-select-try-another-way-form" action={url.loginAction} method="post">
+                                        <div className={kcClsx("kcFormGroupClass")}>
+                                            <input type="hidden" name="tryAnotherWay" value="on" />
+                                            <a
+                                                href="#"
+                                                id="try-another-way"
+                                                onClick={() => {
+                                                    document.forms["kc-select-try-another-way-form" as never].submit();
+                                                    return false;
+                                                }}
+                                            >
+                                                {msg("doTryAnotherWay")}
+                                            </a>
+                                        </div>
+                                    </form>
+                                )}
+                                {socialProvidersNode}
+                                {displayInfo && infoNode}
+                            </div>
                         </div>
                     </div>
                 </div>
