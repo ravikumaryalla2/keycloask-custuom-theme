@@ -57,32 +57,45 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
                 //         </span>
                 //     </div>
                 // </div>
-
-                <div className="login-footer">
-                    <ODSLabel
-                        children="Don’t have an account?"
-                        variant="body2"
-                        sx={{
-                            fontSize: "1rem",
-                            fontWeight: "400"
-                        }}
-                    />
-                    <a tabIndex={8} href={url.registrationUrl} style={{ textDecoration: "none" }}>
-                        <ODSButton
-                            variant="text"
-                            label="Sign up"
-                            tabIndex={8}
-                            sx={{
-                                fontSize: "0.875rem",
-                                fontWeight: "400",
-                                padding: "0px",
-                                "&:hover": {
-                                    backgroundColor: "#fff"
-                                }
-                            }}
-                        />
-                    </a>
-                </div>
+                kcContext.pageId === "login.ftl" && (
+                    <div className={"footer"}>
+                        <div className={"already-have-acc"}>
+                            <ODSLabel
+                                children="Do not have an account ? "
+                                variant="body2"
+                                sx={{
+                                    fontSize: "0.8rem",
+                                    fontWeight: "400"
+                                }}
+                            />
+                            <a tabIndex={8} href={url.registrationUrl} style={{ textDecoration: "none" }}>
+                                {/* <ODSLabel
+                                    variant="body2"
+                                    children="Sign Up"
+                                    sx={{
+                                        fontSize: "0.8rem",
+                                        fontWeight: "400",
+                                        color: "#2196F3"
+                                    }}
+                                    // sx={{
+                                    //     fontSize: "0.8rem",
+                                    //     fontWeight: "400",
+                                    //     padding: "0px",
+                                    //     "&:hover": {
+                                    //         backgroundColor: "#fff"
+                                    //     }
+                                    // }}
+                                /> */}
+                                <ODSButton
+                                    variant="text"
+                                    label="Sign Up"
+                                    size="small"
+                                    sx={{ padding: "0px", fontSize: "0.8rem", fontWeight: "400" }}
+                                />
+                            </a>
+                        </div>
+                    </div>
+                )
             }
             socialProvidersNode={
                 <>
@@ -259,7 +272,7 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
 
                             <div id="kc-form-buttons">
                                 <input type="hidden" id="id-hidden-input" name="credentialId" value={auth.selectedCredential} />
-                                <ODSButton type="submit" fullWidth children={msgStr("doLogIn")} disabled={isLoginButtonDisabled} />
+                                <ODSButton type="submit" fullWidth children={msgStr("doLogIn")} disabled={isLoginButtonDisabled} tabIndex={4} />
                                 {/* <input
                                     tabIndex={7}
                                     disabled={isLoginButtonDisabled}

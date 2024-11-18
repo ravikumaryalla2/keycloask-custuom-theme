@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { LazyOrNot } from "keycloakify/tools/LazyOrNot";
 import { kcSanitize } from "keycloakify/lib/kcSanitize";
 import { getKcClsx, type KcClsx } from "keycloakify/login/lib/kcClsx";
@@ -17,6 +17,9 @@ type RegisterProps = PageProps<Extract<KcContext, { pageId: "register.ftl" }>, I
 };
 
 export default function Register(props: RegisterProps) {
+    useEffect(() => {
+        document.title = "Tiny Command";
+    }, []);
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
 
@@ -70,7 +73,47 @@ export default function Register(props: RegisterProps) {
                             <div className="g-recaptcha" data-size="compact" data-sitekey={recaptchaSiteKey} data-action={recaptchaAction}></div>
                         </div>
                     </div>
-                )}
+                )}{" "}
+                <span className="terms">
+                    <ODSLabel
+                        children="By creating an account, you agree to the "
+                        variant="body2"
+                        sx={{
+                            fontSize: "0.8rem",
+                            fontWeight: "400"
+                        }}
+                    />
+                    <a href="https://www.tinycommand.com/terms-of-use" target="_blank">
+                        <ODSLabel
+                            children="Terms of Service"
+                            variant="body2"
+                            sx={{
+                                fontSize: "0.8rem",
+                                fontWeight: "400",
+                                color: "#2196F3"
+                            }}
+                        />
+                    </a>
+                    <ODSLabel
+                        children="and "
+                        variant="body2"
+                        sx={{
+                            fontSize: "0.8rem",
+                            fontWeight: "400"
+                        }}
+                    />
+                    <a href="https://www.tinycommand.com/privacy-policy" target="_blank">
+                        <ODSLabel
+                            children="Privacy Policy."
+                            variant="body2"
+                            sx={{
+                                fontSize: "0.8rem",
+                                fontWeight: "400",
+                                color: "#2196F3"
+                            }}
+                        />
+                    </a>
+                </span>
                 <div className={kcClsx("kcFormGroupClass")}>
                     {recaptchaRequired && !recaptchaVisible && recaptchaAction !== undefined ? (
                         <div id="kc-form-buttons" className={kcClsx("kcFormButtonsClass")}>
@@ -97,6 +140,7 @@ export default function Register(props: RegisterProps) {
                                 type="submit"
                                 value={msgStr("doRegister")}
                             /> */}
+
                             <ODSButton
                                 type="submit"
                                 label={msgStr("doRegister")}
@@ -107,24 +151,26 @@ export default function Register(props: RegisterProps) {
                     )}
                     <div className={kcClsx("kcFormOptionsClass")}>
                         <div className={kcClsx("kcFormOptionsWrapperClass")}>
-                            <span className="footer-span">
-                                <ODSLabel
-                                    children="Already have an account?"
-                                    variant="body2"
-                                    sx={{
-                                        fontSize: "0.8rem",
-                                        fontWeight: "400"
-                                    }}
-                                />
-                                <a href={url.loginUrl} style={{ textDecoration: "none" }}>
-                                    <ODSButton
-                                        variant="text"
-                                        label="Signin"
-                                        size="small"
-                                        sx={{ padding: "0px", fontSize: "0.8rem", fontWeight: "400" }}
+                            <div className="footer">
+                                <span className="footer-span">
+                                    <ODSLabel
+                                        children="Already have an account?"
+                                        variant="body2"
+                                        sx={{
+                                            fontSize: "0.8rem",
+                                            fontWeight: "400"
+                                        }}
                                     />
-                                </a>
-                            </span>
+                                    <a href={url.loginUrl} style={{ textDecoration: "none" }}>
+                                        <ODSButton
+                                            variant="text"
+                                            label="Sign In"
+                                            size="small"
+                                            sx={{ padding: "0px", fontSize: "0.8rem", fontWeight: "400" }}
+                                        />
+                                    </a>
+                                </span>
+                            </div>
                         </div>
                     </div>
                 </div>
