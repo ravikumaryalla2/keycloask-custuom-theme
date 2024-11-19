@@ -296,33 +296,6 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
                             </div>
                         </div>
                     )}
-                    {kcContext.pageId == "login.ftl" && (
-                        <div className="terms-and-policy">
-                            <a href="https://www.tinycommand.com/terms-of-use" target="_blank">
-                                <ODSLabel
-                                    children="Terms of Service"
-                                    variant="body1"
-                                    sx={{
-                                        fontSize: "0.8rem",
-                                        fontWeight: "400",
-                                        color: "#2196F3"
-                                    }}
-                                />
-                            </a>
-                            <span className="terms-line"></span>
-                            <a href="https://www.tinycommand.com/privacy-policy" target="_blank">
-                                <ODSLabel
-                                    children="Privacy Policy"
-                                    variant="body1"
-                                    sx={{
-                                        fontSize: "0.8rem",
-                                        fontWeight: "400",
-                                        color: "#2196F3"
-                                    }}
-                                />
-                            </a>
-                        </div>
-                    )}
                 </div>
             </div>
         </div>
