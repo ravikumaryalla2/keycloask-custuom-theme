@@ -149,30 +149,11 @@ export default function Register(props: RegisterProps) {
                             />
                         </div>
                     )}
-                    <div className={kcClsx("kcFormOptionsClass")}>
+                    {/* <div className={kcClsx("kcFormOptionsClass")}>
                         <div className={kcClsx("kcFormOptionsWrapperClass")}>
-                            <div className="footer">
-                                <span className="footer-span">
-                                    <ODSLabel
-                                        children="Already have an account?"
-                                        variant="body2"
-                                        sx={{
-                                            fontSize: "0.8rem",
-                                            fontWeight: "400"
-                                        }}
-                                    />
-                                    <a href={url.loginUrl} style={{ textDecoration: "none" }}>
-                                        <ODSButton
-                                            variant="text"
-                                            label="Sign In"
-                                            size="small"
-                                            sx={{ padding: "0px", fontSize: "0.8rem", fontWeight: "400" }}
-                                        />
-                                    </a>
-                                </span>
-                            </div>
+                            
                         </div>
-                    </div>
+                    </div> */}
                 </div>
             </form>
         </Template>

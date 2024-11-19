@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { kcSanitize } from "keycloakify/lib/kcSanitize";
 // import { assert } from "keycloakify/tools/assert";
 // import { clsx } from "keycloakify/tools/clsx";
@@ -8,7 +8,7 @@ import type { KcContext } from "../KcContext";
 import type { I18n } from "../i18n";
 import ODSButton from "oute-ds-button";
 import TextField from "oute-ds-text-field";
-import ODSLabel from "oute-ds-label";
+// import ODSLabel from "oute-ds-label";
 import { googlelogo } from "../assets";
 // import Icon from "oute-ds-icon";
 
@@ -24,6 +24,7 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
                 console.log("Invalid option");
         }
     };
+    const paswordref = useRef(null);
     const { kcContext, i18n, doUseDefaultCss, Template, classes } = props;
 
     // const { kcClsx } = getKcClsx({
@@ -46,57 +47,20 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
             displayInfo={realm.password && realm.registrationAllowed && !registrationDisabled}
             headerMsg="Login"
             subHeadermsg="Welcome back! Please enter your details"
-            infoNode={
-                // <div id="kc-registration-container">
-                //     <div id="kc-registration">
-                //         <span>
-                //             {msg("noAccount")}{" "}
-                //             <a tabIndex={8} href={url.registrationUrl}>
-                //                 {msg("doRegister")}
-                //             </a>
-                //         </span>
-                //     </div>
-                // </div>
-                kcContext.pageId === "login.ftl" && (
-                    <div className={"footer"}>
-                        <div className={"already-have-acc"}>
-                            <ODSLabel
-                                children="Do not have an account ? "
-                                variant="body2"
-                                sx={{
-                                    fontSize: "0.8rem",
-                                    fontWeight: "400"
-                                }}
-                            />
-                            <a tabIndex={8} href={url.registrationUrl} style={{ textDecoration: "none" }}>
-                                {/* <ODSLabel
-                                    variant="body2"
-                                    children="Sign Up"
-                                    sx={{
-                                        fontSize: "0.8rem",
-                                        fontWeight: "400",
-                                        color: "#2196F3"
-                                    }}
-                                    // sx={{
-                                    //     fontSize: "0.8rem",
-                                    //     fontWeight: "400",
-                                    //     padding: "0px",
-                                    //     "&:hover": {
-                                    //         backgroundColor: "#fff"
-                                    //     }
-                                    // }}
-                                /> */}
-                                <ODSButton
-                                    variant="text"
-                                    label="Sign Up"
-                                    size="small"
-                                    sx={{ padding: "0px", fontSize: "0.8rem", fontWeight: "400" }}
-                                />
-                            </a>
-                        </div>
-                    </div>
-                )
-            }
+            registerUrl={url.registrationUrl}
+            // infoNode={
+            //     // <div id="kc-registration-container">
+            //     //     <div id="kc-registration">
+            //     //         <span>
+            //     //             {msg("noAccount")}{" "}
+            //     //             <a tabIndex={8} href={url.registrationUrl}>
+            //     //                 {msg("doRegister")}
+            //     //             </a>
+            //     //         </span>
+            //     //     </div>
+            //     // </div>
+
+            // }
             socialProvidersNode={
                 <>
                     {realm.password && social?.providers !== undefined && social.providers.length !== 0 && (
@@ -209,6 +173,7 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
                                     />
                                     <div className="password-block">
                                         <TextField
+                                            ref={paswordref}
                                             type="password"
                                             placeholder="Password"
                                             name="password"

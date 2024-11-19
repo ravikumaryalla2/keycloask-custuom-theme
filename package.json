@@ -18,10 +18,11 @@
     "keywords": [],
     "dependencies": {
         "keycloakify": "^11.3.6",
+        "oute-ds-alert": "^2.2.52",
         "oute-ds-button": "^2.2.20",
-        "oute-ds-icon": "^2.2.66",
+        "oute-ds-icon": "^2.2.46",
         "oute-ds-label": "^2.2.13",
-        "oute-ds-text-field": "^2.2.71",
+        "oute-ds-text-field": "^2.2.50",
         "react": "^18.2.0",
         "react-dom": "^18.2.0"
     },
