@@ -156,6 +156,8 @@ body {
     /* margin-top: 44px; */
     display: grid;
     grid-template-rows: repeat(2, auto);
+    align-items: center;
+    justify-content: center;
     /* gap: 1rem; */
 }
 
@@ -166,7 +168,6 @@ body {
     grid-template-columns: repeat(4, auto);
     align-items: center;
     justify-content: center;
-
     gap: 0.3rem;
 }
 
@@ -182,9 +183,9 @@ body {
 .already-have-acc {
     display: grid;
     align-items: center;
-    justify-content: center;
-    gap: 4px;
+    justify-content: space-between;
     grid-template-columns: repeat(2, auto);
+    width: 14.5rem;
 }
 .terms {
     grid-column: span 2; /* Span full width */
@@ -207,4 +208,9 @@ body {
     align-items: center;
     justify-content: center;
     gap: 0.2rem;
+}
+
+/* ResetPassword */
+.back-tologin {
+    margin-top: 2rem;
 }
