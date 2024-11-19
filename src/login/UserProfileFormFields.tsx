@@ -74,7 +74,7 @@ export default function UserProfileFormFields(props: UserProfileFormFieldsProps<
     }, [isFormSubmittable]);
 
     const groupNameRef = { current: "" };
-    console.log(formFieldStates);
+    // console.log(formFieldStates);
     const modifiedFormfields = reorderAttributes(formFieldStates);
 
     return (
