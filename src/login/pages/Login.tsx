@@ -7,8 +7,8 @@ import type { PageProps } from "keycloakify/login/pages/PageProps";
 import type { KcContext } from "../KcContext";
 import type { I18n } from "../i18n";
 import ODSButton from "oute-ds-button";
-import TextField from "oute-ds-text-field";
-// import ODSLabel from "oute-ds-label";
+import ODSTextField from "oute-ds-text-field";
+import ODSLabel from "oute-ds-label";
 import { googlelogo } from "../assets";
 // import Icon from "oute-ds-icon";
 
@@ -150,7 +150,7 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
                                         autoComplete="username"
                                         aria-invalid={messagesPerField.existsError("username", "password")}
                                     /> */}
-                                    <TextField
+                                    <ODSTextField
                                         placeholder={
                                             !realm.loginWithEmailAllowed
                                                 ? "Username"
@@ -170,9 +170,24 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
                                                 kcSanitize(messagesPerField.getFirstError("username", "password"))) ||
                                             ""
                                         }
+                                        sx={{
+                                            "& .MuiOutlinedInput-root": {
+                                                backgroundColor: "#fff" // Set the background to white
+                                                // height: {
+                                                //     xl: "2.75rem",
+                                                //     lg: "2.062rem",
+                                                //     md: "2.0143rem",
+                                                //     sm: "1.479rem"
+                                                // }
+                                            },
+                                            "& .MuiInputBase-input": {
+                                                fontWeight: 400, // Change the font weight (e.g., bold)
+                                                color: "#607D8B"
+                                            }
+                                        }}
                                     />
                                     <div className="password-block">
-                                        <TextField
+                                        <ODSTextField
                                             ref={paswordref}
                                             type="password"
                                             placeholder="Password"
@@ -181,6 +196,17 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
                                             id="password"
                                             fullWidth
                                             error={messagesPerField.existsError("username", "password")}
+                                            sx={{
+                                                "& .MuiOutlinedInput-root": {
+                                                    backgroundColor: "#fff" // Set the background to white
+                                                    // height: {
+                                                    //     xl: "2.75rem",
+                                                    //     lg: "2.062rem",
+                                                    //     md: "2.0143rem",
+                                                    //     sm: "1.479rem"
+                                                    // }
+                                                }
+                                            }}
                                             // aria-invalid={messagesPerField.existsError("username", "password")}
                                             // helperText={kcSanitize(messagesPerField.getFirstError("username", "password")) || ""}
                                         />
@@ -189,7 +215,20 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
                                             {realm.resetPasswordAllowed && (
                                                 <span>
                                                     <a tabIndex={6} href={url.loginResetCredentialsUrl}>
-                                                        {msg("doForgotPassword")}
+                                                        <ODSLabel
+                                                            children={msg("doForgotPassword")}
+                                                            variant="body2"
+                                                            sx={{
+                                                                // fontSize: {
+                                                                //     xl: "1rem",
+                                                                //     lg: "0.75rem",
+                                                                //     sm: "0.625rem"
+                                                                // },
+                                                                // fontSize: "1rem",
+                                                                fontWeight: "400",
+                                                                color: "#2196F3"
+                                                            }}
+                                                        />
                                                     </a>
                                                 </span>
                                             )}
@@ -237,7 +276,23 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
 
                             <div id="kc-form-buttons">
                                 <input type="hidden" id="id-hidden-input" name="credentialId" value={auth.selectedCredential} />
-                                <ODSButton type="submit" fullWidth children={msgStr("doLogIn")} disabled={isLoginButtonDisabled} tabIndex={4} />
+                                <ODSButton
+                                    type="submit"
+                                    fullWidth
+                                    children={msgStr("doLogIn")}
+                                    disabled={isLoginButtonDisabled}
+                                    tabIndex={4}
+                                    sx={
+                                        {
+                                            // height: {
+                                            //     xl: "2.75rem",
+                                            //     lg: "2.062rem",
+                                            //     md: "1.956rem",
+                                            //     sm: "1.4666rem"
+                                            // }
+                                        }
+                                    }
+                                />
                                 {/* <input
                                     tabIndex={7}
                                     disabled={isLoginButtonDisabled}

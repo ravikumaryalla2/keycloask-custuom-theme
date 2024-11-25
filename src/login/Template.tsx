@@ -9,7 +9,7 @@ import type { I18n } from "./i18n";
 import type { KcContext } from "./KcContext";
 import "../login/pages/Template.css";
 // import ODSIcon from "oute-ds-icon";
-import ODSButton from "oute-ds-button";
+// import ODSButton from "oute-ds-button";
 import ODSLabel from "oute-ds-label";
 import { showAlert } from "oute-ds-alert";
 export default function Template(props: TemplateProps<KcContext, I18n>) {
@@ -131,8 +131,32 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
                         {(() => {
                             const node = !(auth !== undefined && auth.showUsername && !auth.showResetCredentials) ? (
                                 <div className="login-heading">
-                                    <ODSLabel children={headerMsg || headerNode} variant="h4" />
-                                    <ODSLabel children={subHeadermsg} variant="body1" />
+                                    <ODSLabel
+                                        children={headerMsg || headerNode}
+                                        variant="h4"
+                                        sx={{
+                                            // fontSize: {
+                                            //     xl: "2rem",
+                                            //     lg: "1.5rem",
+                                            //     md: "1.375rem",
+                                            //     sm: "1.125rem"
+                                            // },
+                                            color: "#263238",
+                                            fontWeight: "700"
+                                        }}
+                                    />
+                                    <ODSLabel
+                                        children={subHeadermsg}
+                                        variant="body1"
+                                        sx={{
+                                            color: "#607D8B"
+                                            // fontSize: {
+                                            //     xl: "1rem",
+                                            //     lg: "0.75rem",
+                                            //     sm: "0.625rem"
+                                            // }
+                                        }}
+                                    />
                                 </div>
                             ) : (
                                 <div id="kc-username" className={kcClsx("kcFormGroupClass")}>
@@ -212,9 +236,15 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
                                 <a href="https://www.tinycommand.com/terms-of-use" target="_blank">
                                     <ODSLabel
                                         children="Terms of Service"
-                                        variant="body1"
+                                        variant="body2"
                                         sx={{
-                                            fontSize: "0.8rem",
+                                            // fontSize: {
+                                            //     sm: "0.6rem", // Small
+                                            //     md: "0.7rem", // Medium
+                                            //     lg: "0.75rem", // Large
+                                            //     xl: "0.8rem" // Extra large
+                                            // },
+                                            // fontSize: "0.8rem",
                                             fontWeight: "400",
                                             color: "#2196F3"
                                         }}
@@ -224,9 +254,15 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
                                 <a href="https://www.tinycommand.com/privacy-policy" target="_blank">
                                     <ODSLabel
                                         children="Privacy Policy"
-                                        variant="body1"
+                                        variant="body2"
                                         sx={{
-                                            fontSize: "0.8rem",
+                                            // fontSize: {
+                                            //     sm: "0.6rem", // Small
+                                            //     md: "0.7rem", // Medium
+                                            //     lg: "0.75rem", // Large
+                                            //     xl: "0.8rem" // Extra large
+                                            // },
+                                            // fontSize: "0.8rem",
                                             fontWeight: "400",
                                             color: "#2196F3"
                                         }}
@@ -241,17 +277,29 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
                                 <ODSLabel
                                     children="Already have an account?"
                                     variant="body2"
-                                    sx={{
-                                        fontSize: "0.8rem",
-                                        fontWeight: "400"
-                                    }}
+                                    // sx={{
+                                    //     // fontSize: {
+                                    //     //     xl: "1rem",
+                                    //     //     lg: "0.75rem",
+                                    //     //     sm: "0.625rem"
+                                    //     // },
+                                    //     // fontSize: "0.8rem",
+                                    //     fontWeight: "400"
+                                    // }}
                                 />
                                 <a href={url.loginUrl} style={{ textDecoration: "none" }}>
-                                    <ODSButton
-                                        variant="text"
-                                        label="Sign In"
-                                        size="small"
-                                        sx={{ padding: "0px", fontSize: "0.8rem", fontWeight: "400" }}
+                                    <ODSLabel
+                                        variant="body2"
+                                        children="Sign In"
+                                        sx={{
+                                            // fontSize: {
+                                            //     xl: "1rem",
+                                            //     lg: "0.75rem",
+                                            //     sm: "0.625rem"
+                                            // },
+                                            fontWeight: "400",
+                                            color: "#2196F3"
+                                        }}
                                     />
                                 </a>
                             </span>
@@ -264,34 +312,50 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
                                     children="Do not have an account ? "
                                     variant="body2"
                                     sx={{
-                                        fontSize: "0.8rem",
+                                        // fontSize: {
+                                        //     sm: "0.6rem", // Small
+                                        //     md: "0.7rem", // Medium
+                                        //     lg: "0.75rem", // Large
+                                        //     xl: "0.8rem" // Extra large
+                                        // },
+                                        // fontSize: "0.8rem",
                                         fontWeight: "400"
                                     }}
                                 />
                                 <a tabIndex={8} href={registerUrl} style={{ textDecoration: "none" }}>
-                                    {/* <ODSLabel
-                                    variant="body2"
-                                    children="Sign Up"
-                                    sx={{
-                                        fontSize: "0.8rem",
-                                        fontWeight: "400",
-                                        color: "#2196F3"
-                                    }}
-                                    // sx={{
-                                    //     fontSize: "0.8rem",
-                                    //     fontWeight: "400",
-                                    //     padding: "0px",
-                                    //     "&:hover": {
-                                    //         backgroundColor: "#fff"
-                                    //     }
-                                    // }}
-                                /> */}
-                                    <ODSButton
+                                    <ODSLabel
+                                        variant="body2"
+                                        children="Sign Up"
+                                        sx={{
+                                            // fontSize: "0.8rem",
+                                            fontWeight: "400",
+                                            color: "#2196F3"
+                                        }}
+                                        // sx={{
+                                        //     fontSize: "0.8rem",
+                                        //     fontWeight: "400",
+                                        //     padding: "0px",
+                                        //     "&:hover": {
+                                        //         backgroundColor: "#fff"
+                                        //     }
+                                        // }}
+                                    />
+                                    {/* <ODSButton
                                         variant="text"
                                         label="Sign Up"
                                         size="small"
-                                        sx={{ padding: "0px", fontSize: "0.8rem", fontWeight: "400" }}
-                                    />
+                                        sx={{
+                                            padding: "0px",
+
+                                            fontWeight: "400"
+                                            // fontSize: {
+                                            //     sm: "0.6rem", // Small
+                                            //     md: "0.7rem", // Medium
+                                            //     lg: "0.75rem", // Large
+                                            //     xl: "0.8rem" // Extra large
+                                            // }
+                                        }}
+                                    /> */}
                                 </a>
                             </div>
                         </div>

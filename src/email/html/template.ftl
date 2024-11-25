@@ -420,7 +420,7 @@
                                   word-wrap: break-word;
                                 "
                               >
-                                <p><#nested></p>
+                                <p style="text-decoration:none;"><#nested></p>
                               </div>
                             </td>
                           </tr>

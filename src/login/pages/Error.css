@@ -1,0 +1,11 @@
+/* .form-card {
+    background-image: url("../assets/GenericError.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+} */
+#kc-error-message {
+    display: contents;
+    flex-direction: column;
+    gap: 1rem;
+}

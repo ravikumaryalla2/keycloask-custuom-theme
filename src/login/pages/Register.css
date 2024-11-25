@@ -1,12 +1,7 @@
 .kcFormOptionsClass {
     margin-top: 1rem;
 }
-.footer-span {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 14.5rem;
-}
+
 .kcFormClass {
     display: grid;
     grid-template-columns: 1fr 1fr; /* Two columns */

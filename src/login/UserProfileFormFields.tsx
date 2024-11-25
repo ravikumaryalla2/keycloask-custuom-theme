@@ -435,7 +435,27 @@ function InputTag(props: InputFieldByTypeProps & { fieldIndex: number | undefine
 
                     return valueOrValues;
                 })()}
-                sx={{ marginBottom: "1rem" }}
+                sx={{
+                    marginBottom: "1rem",
+                    // fontSize: {
+                    //     xs: "0.8rem" // Smaller font size for extra-small screens
+                    //     // sm: "1rem" // Default font size for small screens and above
+                    // },
+                    fontWeight: "800",
+                    "& .MuiInputBase-root": {
+                        // height: {
+                        //     xl: "2.75rem",
+                        //     lg: "2.062rem",
+                        //     md: "2.0143rem",
+                        //     sm: "1.479rem"
+                        // },
+                        backgroundColor: "#fff" // Set the background to white
+                    },
+                    "& .MuiInputBase-input": {
+                        fontWeight: 400, // Change the font weight (e.g., bold)
+                        color: "#607D8B"
+                    }
+                }}
                 // className={kcClsx("kcInputClass")}
                 error={displayableErrors.find(error => error.fieldIndex === fieldIndex) !== undefined}
                 disabled={attribute.readOnly}

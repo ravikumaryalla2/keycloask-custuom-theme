@@ -81,7 +81,7 @@ body {
 }
 
 .form-group {
-    margin-bottom: 0.5rem !important;
+    margin-bottom: 0.5rem;
 }
 .login-main {
     display: grid;
@@ -92,6 +92,11 @@ body {
     align-items: center;
     overflow: hidden;
     justify-content: stretch;
+}
+.login-heading {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 }
 
 .input-credentials {
@@ -151,7 +156,7 @@ body {
     height: 0rem;
     width: 100%;
     border-radius: 0.125rem;
-    background-color: #78909c;
+    background-color: #cfd8dc;
 }
 .footer {
     /* margin-top: 44px; */
@@ -214,4 +219,38 @@ body {
 /* ResetPassword */
 .back-tologin {
     margin-top: 2rem;
+}
+
+#kc-form-buttons {
+    margin: 0px;
+}
+.kc-form-footer {
+    display: flex;
+    flex-direction: column;
+    gap: 2.75rem;
+}
+
+.footer-span {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 14.5rem;
+}
+
+@media (min-width: 1200px) and (max-width: 1536px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+@media (min-width: 900px) and (max-width: 1199px) {
+    html {
+        font-size: 12px;
+    }
+}
+
+@media (min-width: 600px) and (max-width: 899px) {
+    html {
+        font-size: 10px;
+    }
 }

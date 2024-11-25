@@ -74,86 +74,121 @@ export default function Register(props: RegisterProps) {
                         </div>
                     </div>
                 )}{" "}
-                <span className="terms">
-                    <ODSLabel
-                        children="By creating an account, you agree to the "
-                        variant="body2"
-                        sx={{
-                            fontSize: "0.8rem",
-                            fontWeight: "400"
-                        }}
-                    />
-                    <a href="https://www.tinycommand.com/terms-of-use" target="_blank">
+                <div className="kc-form-footer">
+                    <span className="terms">
                         <ODSLabel
-                            children="Terms of Service"
+                            children="By creating an account, you agree to the "
                             variant="body2"
                             sx={{
-                                fontSize: "0.8rem",
-                                fontWeight: "400",
-                                color: "#2196F3"
+                                fontWeight: "400"
+                                // fontSize: {
+                                //     sm: "0.6rem", // Small
+                                //     md: "0.7rem", // Medium
+                                //     lg: "0.75rem", // Large
+                                //     xl: "0.8rem" // Extra large
+                                // }
                             }}
                         />
-                    </a>
-                    <ODSLabel
-                        children="and "
-                        variant="body2"
-                        sx={{
-                            fontSize: "0.8rem",
-                            fontWeight: "400"
-                        }}
-                    />
-                    <a href="https://www.tinycommand.com/privacy-policy" target="_blank">
-                        <ODSLabel
-                            children="Privacy Policy."
-                            variant="body2"
-                            sx={{
-                                fontSize: "0.8rem",
-                                fontWeight: "400",
-                                color: "#2196F3"
-                            }}
-                        />
-                    </a>
-                </span>
-                <div className={kcClsx("kcFormGroupClass")}>
-                    {recaptchaRequired && !recaptchaVisible && recaptchaAction !== undefined ? (
-                        <div id="kc-form-buttons" className={kcClsx("kcFormButtonsClass")}>
-                            <button
-                                className={clsx(
-                                    kcClsx("kcButtonClass", "kcButtonPrimaryClass", "kcButtonBlockClass", "kcButtonLargeClass"),
-                                    "g-recaptcha"
-                                )}
-                                data-sitekey={recaptchaSiteKey}
-                                data-callback={() => {
-                                    (document.getElementById("kc-register-form") as HTMLFormElement).submit();
+                        <a href="https://www.tinycommand.com/terms-of-use" target="_blank">
+                            <ODSLabel
+                                children="Terms of Service"
+                                variant="body2"
+                                sx={{
+                                    // fontSize: "0.8rem",
+                                    fontWeight: "400",
+                                    color: "#2196F3"
+                                    // fontSize: {
+                                    //     sm: "0.6rem", // Small
+                                    //     md: "0.7rem", // Medium
+                                    //     lg: "0.75rem", // Large
+                                    //     xl: "0.8rem" // Extra large
+                                    // }
                                 }}
-                                data-action={recaptchaAction}
-                                type="submit"
-                            >
-                                {msg("doRegister")}
-                            </button>
-                        </div>
-                    ) : (
-                        <div id="kc-form-buttons" className={kcClsx("kcFormButtonsClass")}>
-                            {/* <input
+                            />
+                        </a>
+                        <ODSLabel
+                            children="and "
+                            variant="body2"
+                            sx={{
+                                // fontSize: "0.8rem",
+                                fontWeight: "400"
+                                // fontSize: {
+                                //     sm: "0.6rem", // Small
+                                //     md: "0.7rem", // Medium
+                                //     lg: "0.75rem", // Large
+                                //     xl: "0.8rem" // Extra large
+                                // }
+                            }}
+                        />
+                        <a href="https://www.tinycommand.com/privacy-policy" target="_blank">
+                            <ODSLabel
+                                children="Privacy Policy."
+                                variant="body2"
+                                sx={{
+                                    // fontSize: "0.8rem",
+                                    fontWeight: "400",
+                                    color: "#2196F3"
+                                    // fontSize: {
+                                    //     sm: "0.6rem", // Small
+                                    //     md: "0.7rem", // Medium
+                                    //     lg: "0.75rem", // Large
+                                    //     xl: "0.8rem" // Extra large
+                                    // }
+                                }}
+                            />
+                        </a>
+                    </span>
+                    <div className={kcClsx("kcFormGroupClass")}>
+                        {recaptchaRequired && !recaptchaVisible && recaptchaAction !== undefined ? (
+                            <div id="kc-form-buttons" className={kcClsx("kcFormButtonsClass")}>
+                                <button
+                                    className={clsx(
+                                        kcClsx("kcButtonClass", "kcButtonPrimaryClass", "kcButtonBlockClass", "kcButtonLargeClass"),
+                                        "g-recaptcha"
+                                    )}
+                                    data-sitekey={recaptchaSiteKey}
+                                    data-callback={() => {
+                                        (document.getElementById("kc-register-form") as HTMLFormElement).submit();
+                                    }}
+                                    data-action={recaptchaAction}
+                                    type="submit"
+                                >
+                                    {msg("doRegister")}
+                                </button>
+                            </div>
+                        ) : (
+                            <div id="kc-form-buttons" className={kcClsx("kcFormButtonsClass")}>
+                                {/* <input
                                 disabled={!isFormSubmittable || (termsAcceptanceRequired && !areTermsAccepted)}
                                 className={kcClsx("kcButtonClass", "kcButtonPrimaryClass", "kcButtonBlockClass", "kcButtonLargeClass")}
                                 type="submit"
                                 value={msgStr("doRegister")}
                             /> */}
 
-                            <ODSButton
-                                type="submit"
-                                label={msgStr("doRegister")}
-                                fullWidth
-                                disabled={!isFormSubmittable || (termsAcceptanceRequired && !areTermsAccepted)}
-                            />
-                        </div>
-                    )}
-                    {/* <div className={kcClsx("kcFormOptionsClass")}>
+                                <ODSButton
+                                    type="submit"
+                                    label={msgStr("doRegister")}
+                                    sx={
+                                        {
+                                            // height: {
+                                            //     xl: "2.75rem",
+                                            //     lg: "2.062rem",
+                                            //     md: "1.956rem",
+                                            //     sm: "1.4666rem"
+                                            // }
+                                        }
+                                    }
+                                    fullWidth
+                                    disabled={!isFormSubmittable || (termsAcceptanceRequired && !areTermsAccepted)}
+                                />
+                            </div>
+                        )}
+                        {/* <div className={kcClsx("kcFormOptionsClass")}>
                         <div className={kcClsx("kcFormOptionsWrapperClass")}>
                             
                         </div>
                     </div> */}
+                    </div>
                 </div>
             </form>
         </Template>
