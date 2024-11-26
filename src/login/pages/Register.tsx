@@ -80,7 +80,8 @@ export default function Register(props: RegisterProps) {
                             children="By creating an account, you agree to the "
                             variant="body2"
                             sx={{
-                                fontWeight: "400"
+                                fontWeight: "400",
+                                fontSize: "0.8rem"
                                 // fontSize: {
                                 //     sm: "0.6rem", // Small
                                 //     md: "0.7rem", // Medium
@@ -96,6 +97,8 @@ export default function Register(props: RegisterProps) {
                                 sx={{
                                     // fontSize: "0.8rem",
                                     fontWeight: "400",
+                                    fontSize: "0.8rem",
+
                                     color: "#2196F3"
                                     // fontSize: {
                                     //     sm: "0.6rem", // Small
@@ -111,7 +114,9 @@ export default function Register(props: RegisterProps) {
                             variant="body2"
                             sx={{
                                 // fontSize: "0.8rem",
-                                fontWeight: "400"
+                                fontWeight: "400",
+                                fontSize: "0.8rem"
+
                                 // fontSize: {
                                 //     sm: "0.6rem", // Small
                                 //     md: "0.7rem", // Medium
@@ -127,6 +132,8 @@ export default function Register(props: RegisterProps) {
                                 sx={{
                                     // fontSize: "0.8rem",
                                     fontWeight: "400",
+                                    fontSize: "0.8rem",
+
                                     color: "#2196F3"
                                     // fontSize: {
                                     //     sm: "0.6rem", // Small

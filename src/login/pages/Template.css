@@ -193,9 +193,14 @@ body {
     grid-template-columns: repeat(2, auto);
     width: 14.5rem;
 }
+.footer-span {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 14.5rem;
+}
 .terms {
     grid-column: span 2; /* Span full width */
-
     display: grid;
     grid-template-columns: auto auto auto auto;
     align-items: center;
@@ -229,27 +234,36 @@ body {
     flex-direction: column;
     gap: 2.75rem;
 }
-
-.footer-span {
+.sign-box {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 14.5rem;
+    width: 3.349rem;
 }
 
-@media (min-width: 1200px) and (max-width: 1536px) {
+@media (min-width: 1920px) {
     html {
         font-size: 16px;
     }
 }
 
-@media (min-width: 900px) and (max-width: 1199px) {
+@media (min-width: 1367) and (max-width: 1919px) {
+    html {
+        font-size: 14px;
+    }
+}
+
+@media (min-width: 1025px) and (max-width: 1366px) {
     html {
         font-size: 12px;
     }
 }
-
-@media (min-width: 600px) and (max-width: 899px) {
+@media (min-width: 768px) and (max-width: 1024px) {
+    html {
+        font-size: 10px;
+    }
+}
+@media (max-width: 767px) {
     html {
         font-size: 10px;
     }
