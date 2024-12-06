@@ -5,7 +5,6 @@ import type { I18n } from "../i18n";
 import "./Error.css";
 import ODSButton from "oute-ds-button";
 import ODSLabel from "oute-ds-label";
-import errorimg from "../assets/GenericError.svg";
 
 export default function Error(props: PageProps<Extract<KcContext, { pageId: "error.ftl" }>, I18n>) {
     const { kcContext, i18n, doUseDefaultCss, Template, classes } = props;
@@ -23,23 +22,30 @@ export default function Error(props: PageProps<Extract<KcContext, { pageId: "err
             displayMessage={false}
             headerNode={msg("errorTitle")}
         >
-            <div className="errorbg">
-                <img src={errorimg} id="errorPic" alt="Error" />
-            </div>
-            <div id="kc-error-message">
+            <div className="errorbg"></div>
+            <div id="kc-error-message" className="errordetails">
                 <ODSLabel
                     variant="body2"
                     color="danger"
                     children={kcSanitize(message.summary)}
                     sx={{
-                        color: "#607D8B"
+                        color: "#607D8B",
+                        fontFamily: "Inter"
                     }}
                 />
 
                 {!skipLink && client !== undefined && client.baseUrl !== undefined && (
                     <p>
                         <a id="backToApplication" href={client.baseUrl} style={{ textDecoration: "none" }}>
-                            <ODSButton variant="text" children={"BACK TO APPLICATION"} size="small" fullWidth />
+                            <ODSButton
+                                variant="text"
+                                children={"BACK TO APPLICATION"}
+                                size="small"
+                                fullWidth
+                                sx={{
+                                    fontFamily: "Inter"
+                                }}
+                            />
                         </a>
                     </p>
                 )}

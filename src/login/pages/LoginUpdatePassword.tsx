@@ -7,6 +7,7 @@ import type { KcContext } from "../KcContext";
 import type { I18n } from "../i18n";
 import ODSTextField from "oute-ds-text-field";
 import ODSButton from "oute-ds-button";
+import "./LoginUpdatePassword.css";
 
 export default function LoginUpdatePassword(props: PageProps<Extract<KcContext, { pageId: "login-update-password.ftl" }>, I18n>) {
     const { kcContext, i18n, doUseDefaultCss, Template, classes } = props;
@@ -30,14 +31,15 @@ export default function LoginUpdatePassword(props: PageProps<Extract<KcContext, 
             headerMsg={"Update Password"}
         >
             <form id="kc-passwd-update-form" className={kcClsx("kcFormClass")} action={url.loginAction} method="post">
-                <div className={kcClsx("kcFormGroupClass")}>
-                    <div className={kcClsx("kcLabelWrapperClass")}>
-                        {/* <label htmlFor="password-new" className={kcClsx("kcLabelClass")}>
+                <div className="input-fields">
+                    <div className={kcClsx("kcFormGroupClass")}>
+                        <div className={kcClsx("kcLabelWrapperClass")}>
+                            {/* <label htmlFor="password-new" className={kcClsx("kcLabelClass")}>
                             {msg("passwordNew")}
                         </label> */}
-                    </div>
-                    <div className={kcClsx("kcInputWrapperClass")}>
-                        {/* <PasswordWrapper kcClsx={kcClsx} i18n={i18n} passwordInputId="password-new">
+                        </div>
+                        <div className={kcClsx("kcInputWrapperClass")}>
+                            {/* <PasswordWrapper kcClsx={kcClsx} i18n={i18n} passwordInputId="password-new">
                             <input
                                 type="password"
                                 id="password-new"
@@ -48,38 +50,38 @@ export default function LoginUpdatePassword(props: PageProps<Extract<KcContext, 
                                 aria-invalid={messagesPerField.existsError("password", "password-confirm")}
                             />
                         </PasswordWrapper> */}
-                        <ODSTextField
-                            placeholder="New Password"
-                            type="password"
-                            id="password-new"
-                            name="password-new"
-                            autoFocus
-                            fullWidth
-                            autoComplete="new-password"
-                            aria-invalid={messagesPerField.existsError("password", "password-confirm")}
-                        />
-
-                        {messagesPerField.existsError("password") && (
-                            <span
-                                id="input-error-password"
-                                className={kcClsx("kcInputErrorMessageClass")}
-                                aria-live="polite"
-                                dangerouslySetInnerHTML={{
-                                    __html: kcSanitize(messagesPerField.get("password"))
-                                }}
+                            <ODSTextField
+                                placeholder="New Password"
+                                type="password"
+                                id="password-new"
+                                name="password-new"
+                                autoFocus
+                                fullWidth
+                                autoComplete="new-password"
+                                aria-invalid={messagesPerField.existsError("password", "password-confirm")}
                             />
-                        )}
-                    </div>
-                </div>
 
-                <div className={kcClsx("kcFormGroupClass")}>
-                    <div className={kcClsx("kcLabelWrapperClass")}>
-                        {/* <label htmlFor="password-confirm" className={kcClsx("kcLabelClass")}>
+                            {messagesPerField.existsError("password") && (
+                                <span
+                                    id="input-error-password"
+                                    className={kcClsx("kcInputErrorMessageClass")}
+                                    aria-live="polite"
+                                    dangerouslySetInnerHTML={{
+                                        __html: kcSanitize(messagesPerField.get("password"))
+                                    }}
+                                />
+                            )}
+                        </div>
+                    </div>
+
+                    <div className={kcClsx("kcFormGroupClass")}>
+                        <div className={kcClsx("kcLabelWrapperClass")}>
+                            {/* <label htmlFor="password-confirm" className={kcClsx("kcLabelClass")}>
                             {msg("passwordConfirm")}
                         </label> */}
-                    </div>
-                    <div className={kcClsx("kcInputWrapperClass")}>
-                        {/* <PasswordWrapper kcClsx={kcClsx} i18n={i18n} passwordInputId="password-confirm">
+                        </div>
+                        <div className={kcClsx("kcInputWrapperClass")}>
+                            {/* <PasswordWrapper kcClsx={kcClsx} i18n={i18n} passwordInputId="password-confirm">
                             <input
                                 type="password"
                                 id="password-confirm"
@@ -90,33 +92,36 @@ export default function LoginUpdatePassword(props: PageProps<Extract<KcContext, 
                                 aria-invalid={messagesPerField.existsError("password", "password-confirm")}
                             />
                         </PasswordWrapper> */}
-                        <ODSTextField
-                            placeholder="Confirm Password"
-                            type="password"
-                            id="password-confirm"
-                            name="password-confirm"
-                            autoFocus
-                            fullWidth
-                            autoComplete="new-password"
-                            aria-invalid={messagesPerField.existsError("password", "password-confirm")}
-                        />
-
-                        {messagesPerField.existsError("password-confirm") && (
-                            <span
-                                id="input-error-password-confirm"
-                                className={kcClsx("kcInputErrorMessageClass")}
-                                aria-live="polite"
-                                dangerouslySetInnerHTML={{
-                                    __html: kcSanitize(messagesPerField.get("password-confirm"))
-                                }}
+                            <ODSTextField
+                                placeholder="Confirm Password"
+                                type="password"
+                                id="password-confirm"
+                                name="password-confirm"
+                                autoFocus
+                                fullWidth
+                                autoComplete="new-password"
+                                aria-invalid={messagesPerField.existsError("password", "password-confirm")}
                             />
-                        )}
+
+                            {messagesPerField.existsError("password-confirm") && (
+                                <span
+                                    id="input-error-password-confirm"
+                                    className={kcClsx("kcInputErrorMessageClass")}
+                                    aria-live="polite"
+                                    dangerouslySetInnerHTML={{
+                                        __html: kcSanitize(messagesPerField.get("password-confirm"))
+                                    }}
+                                />
+                            )}
+                            <div className="logut-sessions-checkbox">
+                                <LogoutOtherSessions kcClsx={kcClsx} i18n={i18n} />
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div className={kcClsx("kcFormGroupClass")}>
-                    <LogoutOtherSessions kcClsx={kcClsx} i18n={i18n} />
-                    <div id="kc-form-buttons" className={kcClsx("kcFormButtonsClass")}>
-                        {/* <input
+
+                    <div className={kcClsx("kcFormGroupClass")}>
+                        <div id="kc-form-buttons" className={kcClsx("kcFormButtonsClass")}>
+                            {/* <input
                             className={kcClsx(
                                 "kcButtonClass",
                                 "kcButtonPrimaryClass",
@@ -126,18 +131,19 @@ export default function LoginUpdatePassword(props: PageProps<Extract<KcContext, 
                             type="submit"
                             value={msgStr("doSubmit")}
                         /> */}
-                        <ODSButton type="submit" children={msgStr("doSubmit")} fullWidth />
-                        {isAppInitiatedAction && (
-                            // <button
-                            //     className={kcClsx("kcButtonClass", "kcButtonDefaultClass", "kcButtonLargeClass")}
-                            //     type="submit"
-                            //     name="cancel-aia"
-                            //     value="true"
-                            // >
-                            //     {msg("doCancel")}
-                            // </button>
-                            <ODSButton type="submit" children={msg("doCancel")} fullWidth name="cancel-aia" value="true" />
-                        )}
+                            <ODSButton type="submit" children={msgStr("doSubmit")} fullWidth />
+                            {isAppInitiatedAction && (
+                                // <button
+                                //     className={kcClsx("kcButtonClass", "kcButtonDefaultClass", "kcButtonLargeClass")}
+                                //     type="submit"
+                                //     name="cancel-aia"
+                                //     value="true"
+                                // >
+                                //     {msg("doCancel")}
+                                // </button>
+                                <ODSButton type="submit" children={msg("doCancel")} fullWidth name="cancel-aia" value="true" />
+                            )}
+                        </div>
                     </div>
                 </div>
             </form>

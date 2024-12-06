@@ -2,6 +2,7 @@ html {
     height: 100vh;
     width: 100vw;
 }
+
 #root {
     width: 100%;
     height: 100%;
@@ -25,20 +26,25 @@ body a {
 .login-pf,
 body {
     list-style: none;
+    /* 
+    background-image: url("../assets/background.svg");
+    background: linear-gradient(113deg, #6ae2e2 -0.02%, #1c3693 59.84%); */
 
-    /* background: green !important; */
-    background-image: url("../assets/background.svg") !important;
-    background-position: cover;
+    background: url("../assets/Background_1.svg"),
+        linear-gradient(113deg, #6ae2e2 -0.02%, #1c3693 59.84%);
+
+    background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     margin: 0;
     padding: 0;
     height: 100vh;
     width: 100vw;
+    font-family: "Inter";
 }
-body {
+/* body {
     background: none !important;
-}
+} */
 
 .custom-body {
     /* display: grid;
@@ -53,6 +59,12 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+.tinylogo {
+    display: absolute;
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
 }
 
 .form-card {
@@ -191,13 +203,13 @@ body {
     align-items: center;
     justify-content: space-between;
     grid-template-columns: repeat(2, auto);
-    width: 14.5rem;
+    width: max-content;
 }
 .footer-span {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 14.5rem;
+    width: 17.5rem;
 }
 .terms {
     grid-column: span 2; /* Span full width */
@@ -240,10 +252,10 @@ body {
     align-items: center;
     width: 3.349rem;
 }
-
+/* 
 @media (min-width: 1920px) {
     html {
-        font-size: 16px;
+        font-size: 16px !important;
     }
 }
 
@@ -266,5 +278,14 @@ body {
 @media (max-width: 767px) {
     html {
         font-size: 10px;
+    }
+} */
+
+body {
+    transform: scale(1) !important;
+}
+@media screen and (min-width: 2560px) {
+    body {
+        transform: scale(1) !important;
     }
 }

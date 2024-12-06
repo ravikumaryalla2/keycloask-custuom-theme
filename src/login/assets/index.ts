@@ -1,3 +1,3 @@
-import googlelogo from "./googleLogo.png";
+import googlelogo from "./google.webp";
 
 export { googlelogo };

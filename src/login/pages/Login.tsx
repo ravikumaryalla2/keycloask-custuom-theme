@@ -8,7 +8,7 @@ import type { KcContext } from "../KcContext";
 import type { I18n } from "../i18n";
 import ODSButton from "oute-ds-button";
 import ODSTextField from "oute-ds-text-field";
-import ODSLabel from "oute-ds-label";
+// import ODSLabel from "oute-ds-label";
 import { googlelogo } from "../assets";
 // import Icon from "oute-ds-icon";
 
@@ -96,8 +96,8 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
                                             <ODSButton
                                                 // startIcon={`${p.iconClasses && <i className={clsx(kcClsx("kcCommonLogoIdP"), p.iconClasses)} aria-hidden="true"></i>}`}
                                                 label={p.displayName}
-                                                startIcon={<img src={getLogo(p.alias)} alt="Google Logo" style={{ width: 24, height: 24 }} />}
-                                                sx={{ color: "#000" }}
+                                                startIcon={<img src={getLogo(p.alias)} alt="Google Logo" style={{ height: "1rem" }} />}
+                                                sx={{ color: "#000", fontFamily: "Inter" }}
                                                 fullWidth
                                                 variant="outlined"
                                             />
@@ -182,7 +182,8 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
                                             },
                                             "& .MuiInputBase-input": {
                                                 fontWeight: 400, // Change the font weight (e.g., bold)
-                                                color: "#607D8B"
+                                                color: "#607D8B",
+                                                fontFamily: "Inter"
                                             }
                                         }}
                                     />
@@ -197,6 +198,7 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
                                             fullWidth
                                             error={messagesPerField.existsError("username", "password")}
                                             sx={{
+                                                fontFamily: "Inter",
                                                 "& .MuiOutlinedInput-root": {
                                                     backgroundColor: "#fff" // Set the background to white
                                                     // height: {
@@ -214,10 +216,14 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
                                         <div className="forgot-password">
                                             {realm.resetPasswordAllowed && (
                                                 <span>
-                                                    <a tabIndex={6} href={url.loginResetCredentialsUrl}>
-                                                        <ODSLabel
-                                                            children={msg("doForgotPassword")}
-                                                            variant="body2"
+                                                    <a
+                                                        tabIndex={6}
+                                                        href={url.loginResetCredentialsUrl}
+                                                        style={{ textDecoration: "none", display: "inline-block" }}
+                                                    >
+                                                        <ODSButton
+                                                            label={msg("doForgotPassword")}
+                                                            variant="text"
                                                             sx={{
                                                                 // fontSize: {
                                                                 //     xl: "1rem",
@@ -226,7 +232,9 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
                                                                 // },
                                                                 // fontSize: "1rem",
                                                                 fontWeight: "400",
-                                                                color: "#2196F3"
+                                                                padding: "0rem",
+                                                                color: "#2196F3",
+                                                                fontFamily: "Inter"
                                                             }}
                                                         />
                                                     </a>
@@ -282,16 +290,15 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
                                     children={msgStr("doLogIn")}
                                     disabled={isLoginButtonDisabled}
                                     tabIndex={4}
-                                    sx={
-                                        {
-                                            // height: {
-                                            //     xl: "2.75rem",
-                                            //     lg: "2.062rem",
-                                            //     md: "1.956rem",
-                                            //     sm: "1.4666rem"
-                                            // }
-                                        }
-                                    }
+                                    sx={{
+                                        fontFamily: "Inter"
+                                        // height: {
+                                        //     xl: "2.75rem",
+                                        //     lg: "2.062rem",
+                                        //     md: "1.956rem",
+                                        //     sm: "1.4666rem"
+                                        // }
+                                    }}
                                 />
                                 {/* <input
                                     tabIndex={7}

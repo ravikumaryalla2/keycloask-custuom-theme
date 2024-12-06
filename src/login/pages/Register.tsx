@@ -81,7 +81,8 @@ export default function Register(props: RegisterProps) {
                             variant="body2"
                             sx={{
                                 fontWeight: "400",
-                                fontSize: "0.8rem"
+                                fontSize: "0.8rem",
+                                fontFamily: "Inter"
                                 // fontSize: {
                                 //     sm: "0.6rem", // Small
                                 //     md: "0.7rem", // Medium
@@ -90,7 +91,7 @@ export default function Register(props: RegisterProps) {
                                 // }
                             }}
                         />
-                        <a href="https://www.tinycommand.com/terms-of-use" target="_blank">
+                        <a href="https://www.tinycommand.com/terms-of-use" target="_blank" style={{ textDecoration: "none" }}>
                             <ODSLabel
                                 children="Terms of Service"
                                 variant="body2"
@@ -98,6 +99,7 @@ export default function Register(props: RegisterProps) {
                                     // fontSize: "0.8rem",
                                     fontWeight: "400",
                                     fontSize: "0.8rem",
+                                    fontFamily: "Inter",
 
                                     color: "#2196F3"
                                     // fontSize: {
@@ -115,7 +117,8 @@ export default function Register(props: RegisterProps) {
                             sx={{
                                 // fontSize: "0.8rem",
                                 fontWeight: "400",
-                                fontSize: "0.8rem"
+                                fontSize: "0.8rem",
+                                fontFamily: "Inter"
 
                                 // fontSize: {
                                 //     sm: "0.6rem", // Small
@@ -125,7 +128,7 @@ export default function Register(props: RegisterProps) {
                                 // }
                             }}
                         />
-                        <a href="https://www.tinycommand.com/privacy-policy" target="_blank">
+                        <a href="https://www.tinycommand.com/privacy-policy" target="_blank" style={{ textDecoration: "none" }}>
                             <ODSLabel
                                 children="Privacy Policy."
                                 variant="body2"
@@ -133,6 +136,7 @@ export default function Register(props: RegisterProps) {
                                     // fontSize: "0.8rem",
                                     fontWeight: "400",
                                     fontSize: "0.8rem",
+                                    fontFamily: "Inter",
 
                                     color: "#2196F3"
                                     // fontSize: {
@@ -175,16 +179,15 @@ export default function Register(props: RegisterProps) {
                                 <ODSButton
                                     type="submit"
                                     label={msgStr("doRegister")}
-                                    sx={
-                                        {
-                                            // height: {
-                                            //     xl: "2.75rem",
-                                            //     lg: "2.062rem",
-                                            //     md: "1.956rem",
-                                            //     sm: "1.4666rem"
-                                            // }
-                                        }
-                                    }
+                                    sx={{
+                                        fontFamily: "Inter"
+                                        // height: {
+                                        //     xl: "2.75rem",
+                                        //     lg: "2.062rem",
+                                        //     md: "1.956rem",
+                                        //     sm: "1.4666rem"
+                                        // }
+                                    }}
                                     fullWidth
                                     disabled={!isFormSubmittable || (termsAcceptanceRequired && !areTermsAccepted)}
                                 />

@@ -437,6 +437,7 @@ function InputTag(props: InputFieldByTypeProps & { fieldIndex: number | undefine
                 })()}
                 sx={{
                     marginBottom: "1rem",
+                    fontFamily: "Inter",
                     // fontSize: {
                     //     xs: "0.8rem" // Smaller font size for extra-small screens
                     //     // sm: "1rem" // Default font size for small screens and above
