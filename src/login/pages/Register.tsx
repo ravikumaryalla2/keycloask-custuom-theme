@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { LazyOrNot } from "keycloakify/tools/LazyOrNot";
 import { kcSanitize } from "keycloakify/lib/kcSanitize";
 import { getKcClsx, type KcClsx } from "keycloakify/login/lib/kcClsx";
@@ -17,6 +17,9 @@ type RegisterProps = PageProps<Extract<KcContext, { pageId: "register.ftl" }>, I
 };
 
 export default function Register(props: RegisterProps) {
+    useEffect(() => {
+        document.title = "Tiny Command";
+    }, []);
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
 
@@ -70,62 +73,131 @@ export default function Register(props: RegisterProps) {
                             <div className="g-recaptcha" data-size="compact" data-sitekey={recaptchaSiteKey} data-action={recaptchaAction}></div>
                         </div>
                     </div>
-                )}
-                <div className={kcClsx("kcFormGroupClass")}>
-                    {recaptchaRequired && !recaptchaVisible && recaptchaAction !== undefined ? (
-                        <div id="kc-form-buttons" className={kcClsx("kcFormButtonsClass")}>
-                            <button
-                                className={clsx(
-                                    kcClsx("kcButtonClass", "kcButtonPrimaryClass", "kcButtonBlockClass", "kcButtonLargeClass"),
-                                    "g-recaptcha"
-                                )}
-                                data-sitekey={recaptchaSiteKey}
-                                data-callback={() => {
-                                    (document.getElementById("kc-register-form") as HTMLFormElement).submit();
+                )}{" "}
+                <div className="kc-form-footer">
+                    <span className="terms">
+                        <ODSLabel
+                            children="By creating an account, you agree to the "
+                            variant="body2"
+                            sx={{
+                                fontWeight: "400",
+                                fontSize: "0.8rem",
+                                fontFamily: "Inter"
+                                // fontSize: {
+                                //     sm: "0.6rem", // Small
+                                //     md: "0.7rem", // Medium
+                                //     lg: "0.75rem", // Large
+                                //     xl: "0.8rem" // Extra large
+                                // }
+                            }}
+                        />
+                        <a href="https://www.tinycommand.com/terms-of-use" target="_blank" style={{ textDecoration: "none" }}>
+                            <ODSLabel
+                                children="Terms of Service"
+                                variant="body2"
+                                sx={{
+                                    // fontSize: "0.8rem",
+                                    fontWeight: "400",
+                                    fontSize: "0.8rem",
+                                    fontFamily: "Inter",
+
+                                    color: "#2196F3"
+                                    // fontSize: {
+                                    //     sm: "0.6rem", // Small
+                                    //     md: "0.7rem", // Medium
+                                    //     lg: "0.75rem", // Large
+                                    //     xl: "0.8rem" // Extra large
+                                    // }
                                 }}
-                                data-action={recaptchaAction}
-                                type="submit"
-                            >
-                                {msg("doRegister")}
-                            </button>
-                        </div>
-                    ) : (
-                        <div id="kc-form-buttons" className={kcClsx("kcFormButtonsClass")}>
-                            {/* <input
+                            />
+                        </a>
+                        <ODSLabel
+                            children="and "
+                            variant="body2"
+                            sx={{
+                                // fontSize: "0.8rem",
+                                fontWeight: "400",
+                                fontSize: "0.8rem",
+                                fontFamily: "Inter"
+
+                                // fontSize: {
+                                //     sm: "0.6rem", // Small
+                                //     md: "0.7rem", // Medium
+                                //     lg: "0.75rem", // Large
+                                //     xl: "0.8rem" // Extra large
+                                // }
+                            }}
+                        />
+                        <a href="https://www.tinycommand.com/privacy-policy" target="_blank" style={{ textDecoration: "none" }}>
+                            <ODSLabel
+                                children="Privacy Policy."
+                                variant="body2"
+                                sx={{
+                                    // fontSize: "0.8rem",
+                                    fontWeight: "400",
+                                    fontSize: "0.8rem",
+                                    fontFamily: "Inter",
+
+                                    color: "#2196F3"
+                                    // fontSize: {
+                                    //     sm: "0.6rem", // Small
+                                    //     md: "0.7rem", // Medium
+                                    //     lg: "0.75rem", // Large
+                                    //     xl: "0.8rem" // Extra large
+                                    // }
+                                }}
+                            />
+                        </a>
+                    </span>
+                    <div className={kcClsx("kcFormGroupClass")}>
+                        {recaptchaRequired && !recaptchaVisible && recaptchaAction !== undefined ? (
+                            <div id="kc-form-buttons" className={kcClsx("kcFormButtonsClass")}>
+                                <button
+                                    className={clsx(
+                                        kcClsx("kcButtonClass", "kcButtonPrimaryClass", "kcButtonBlockClass", "kcButtonLargeClass"),
+                                        "g-recaptcha"
+                                    )}
+                                    data-sitekey={recaptchaSiteKey}
+                                    data-callback={() => {
+                                        (document.getElementById("kc-register-form") as HTMLFormElement).submit();
+                                    }}
+                                    data-action={recaptchaAction}
+                                    type="submit"
+                                >
+                                    {msg("doRegister")}
+                                </button>
+                            </div>
+                        ) : (
+                            <div id="kc-form-buttons" className={kcClsx("kcFormButtonsClass")}>
+                                {/* <input
                                 disabled={!isFormSubmittable || (termsAcceptanceRequired && !areTermsAccepted)}
                                 className={kcClsx("kcButtonClass", "kcButtonPrimaryClass", "kcButtonBlockClass", "kcButtonLargeClass")}
                                 type="submit"
                                 value={msgStr("doRegister")}
                             /> */}
-                            <ODSButton
-                                type="submit"
-                                label={msgStr("doRegister")}
-                                fullWidth
-                                disabled={!isFormSubmittable || (termsAcceptanceRequired && !areTermsAccepted)}
-                            />
-                        </div>
-                    )}
-                    <div className={kcClsx("kcFormOptionsClass")}>
-                        <div className={kcClsx("kcFormOptionsWrapperClass")}>
-                            <span className="footer-span">
-                                <ODSLabel
-                                    children="Already have an account?"
-                                    variant="body2"
+
+                                <ODSButton
+                                    type="submit"
+                                    label={msgStr("doRegister")}
                                     sx={{
-                                        fontSize: "0.8rem",
-                                        fontWeight: "400"
+                                        fontFamily: "Inter"
+                                        // height: {
+                                        //     xl: "2.75rem",
+                                        //     lg: "2.062rem",
+                                        //     md: "1.956rem",
+                                        //     sm: "1.4666rem"
+                                        // }
                                     }}
+                                    fullWidth
+                                    disabled={!isFormSubmittable || (termsAcceptanceRequired && !areTermsAccepted)}
                                 />
-                                <a href={url.loginUrl} style={{ textDecoration: "none" }}>
-                                    <ODSButton
-                                        variant="text"
-                                        label="Signin"
-                                        size="small"
-                                        sx={{ padding: "0px", fontSize: "0.8rem", fontWeight: "400" }}
-                                    />
-                                </a>
-                            </span>
+                            </div>
+                        )}
+                        {/* <div className={kcClsx("kcFormOptionsClass")}>
+                        <div className={kcClsx("kcFormOptionsWrapperClass")}>
+                            
                         </div>
+                    </div> */}
                     </div>
                 </div>
             </form>

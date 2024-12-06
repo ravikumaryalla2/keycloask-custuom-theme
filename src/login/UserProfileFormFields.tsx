@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 //commented password wrapper
 //commented usereducer
 //changed placeholder in form
@@ -5,7 +6,8 @@
 import {
     useEffect,
     //  useReducer,
-    Fragment
+    Fragment,
+    useRef
 } from "react";
 import { assert } from "keycloakify/tools/assert";
 import type { KcClsx } from "keycloakify/login/lib/kcClsx";
@@ -20,6 +22,32 @@ import type { Attribute } from "keycloakify/login/KcContext";
 import type { KcContext } from "./KcContext";
 import type { I18n } from "./i18n";
 import ODSTextField from "oute-ds-text-field";
+
+function reorderAttributes(attributes: any) {
+    const desiredOrder = ["email", "firstName", "lastName", "password", "password-confirm"];
+
+    // Separate attributes based on the desired order
+    const ordered: any[] = [];
+    const remaining: any[] = [];
+
+    attributes.forEach((item: { attribute: { name: any } }) => {
+        const attributeName = item.attribute.name;
+        if (desiredOrder.includes(attributeName)) {
+            // Place in ordered array in the correct position
+            const index = desiredOrder.indexOf(attributeName);
+            ordered[index] = item;
+        } else {
+            // Place in remaining array
+            remaining.push(item);
+        }
+    });
+
+    // Remove any undefined slots from the ordered array
+    const cleanOrdered = ordered.filter(Boolean);
+
+    // Return the combined result
+    return [...cleanOrdered, ...remaining];
+}
 
 export default function UserProfileFormFields(props: UserProfileFormFieldsProps<KcContext, I18n>) {
     // function toTitleCase(str: string) {
@@ -46,11 +74,12 @@ export default function UserProfileFormFields(props: UserProfileFormFieldsProps<
     }, [isFormSubmittable]);
 
     const groupNameRef = { current: "" };
+    // console.log(formFieldStates);
+    const modifiedFormfields = reorderAttributes(formFieldStates);
 
     return (
         <>
-            {formFieldStates.map(({ attribute, displayableErrors, valueOrValues }) => {
-                console.log(attribute.annotations);
+            {modifiedFormfields.map(({ attribute, displayableErrors, valueOrValues }) => {
                 return (
                     <Fragment key={attribute.name}>
                         <GroupLabel attribute={attribute} groupNameRef={groupNameRef} i18n={i18n} kcClsx={kcClsx} />
@@ -297,6 +326,7 @@ function InputFieldByType(props: InputFieldByTypeProps) {
 // }
 
 function InputTag(props: InputFieldByTypeProps & { fieldIndex: number | undefined }) {
+    const passwordref = useRef(null);
     const { attribute, fieldIndex, kcClsx, dispatchFormAction, valueOrValues, i18n, displayableErrors } = props;
 
     const { advancedMsgStr } = i18n;
@@ -375,6 +405,7 @@ function InputTag(props: InputFieldByTypeProps & { fieldIndex: number | undefine
                 }
             /> */}
             <ODSTextField
+                ref={passwordref}
                 type={(() => {
                     const { inputType } = attribute.annotations;
 
@@ -404,7 +435,28 @@ function InputTag(props: InputFieldByTypeProps & { fieldIndex: number | undefine
 
                     return valueOrValues;
                 })()}
-                sx={{ marginBottom: "1rem" }}
+                sx={{
+                    marginBottom: "1rem",
+                    fontFamily: "Inter",
+                    // fontSize: {
+                    //     xs: "0.8rem" // Smaller font size for extra-small screens
+                    //     // sm: "1rem" // Default font size for small screens and above
+                    // },
+                    fontWeight: "800",
+                    "& .MuiInputBase-root": {
+                        // height: {
+                        //     xl: "2.75rem",
+                        //     lg: "2.062rem",
+                        //     md: "2.0143rem",
+                        //     sm: "1.479rem"
+                        // },
+                        backgroundColor: "#fff" // Set the background to white
+                    },
+                    "& .MuiInputBase-input": {
+                        fontWeight: 400, // Change the font weight (e.g., bold)
+                        color: "#607D8B"
+                    }
+                }}
                 // className={kcClsx("kcInputClass")}
                 error={displayableErrors.find(error => error.fieldIndex === fieldIndex) !== undefined}
                 disabled={attribute.readOnly}
